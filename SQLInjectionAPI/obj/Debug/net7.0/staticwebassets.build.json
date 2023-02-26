@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "LFtt5fxvip4B3vJI7f8i2TTg4YDn6CMXkzHUNxA2Cb0=",
+  "Source": "SQLInjectionAPI",
+  "BasePath": "_content/SQLInjectionAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

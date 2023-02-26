@@ -1,3 +1,5 @@
+using System.Data.SqlClient;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,12 +19,16 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
+
+string connectionString = "Server=ADRIAN\\SQLEXPRESS;Database=TestPerformance;Trusted_Connection=True;TrustServerCertificate=True";
+
+
 app.MapGet("/performance/{name}/{country}", (string name, string country) =>
 {
     string query = "INSERT INTO Performance(Name, Country) " +
-    " VALUES('\"+name+\"','\"+country+\"')";
+    " VALUES('"+name+"','"+country+"')";
 
-using (SqlConnection connection = new SqlConnection(connectionString))
+    using (SqlConnection connection = new SqlConnection(connectionString))
     {
         SqlCommand command = new SqlCommand(query, connection);
 
@@ -36,3 +42,7 @@ using (SqlConnection connection = new SqlConnection(connectionString))
 
 app.Run();
 
+internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+{
+    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+}
