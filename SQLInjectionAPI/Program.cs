@@ -26,12 +26,13 @@ string connectionString = "Server=ADRIAN\\SQLEXPRESS;Database=TestPerformance;Tr
 app.MapGet("/performance/{name}/{country}", (string name, string country) =>
 {
     string query = "INSERT INTO Performance(Name, Country) " +
-    " VALUES('"+name+"','"+country+"')";
+    " VALUES(@name,@country)";
 
     using (SqlConnection connection = new SqlConnection(connectionString))
     {
         SqlCommand command = new SqlCommand(query, connection);
-
+        command.Parameters.AddWithValue("@name", name);
+        command.Parameters.AddWithValue("@country", country);
         connection.Open();
         command.ExecuteNonQuery();
 
